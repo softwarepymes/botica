@@ -1,0 +1,61 @@
+/* ====================================================================
+   BOTICACONTROL v2.0 - ESTILOS PERSONALIZADOS
+   ==================================================================== */
+
+.hidden { 
+    display: none !important; 
+}
+
+#modal-producto {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+#modal-producto.hidden {
+    display: none !important;
+}
+
+.sugerencia-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.sugerencia-item:last-child {
+    border-bottom: none;
+}
+
+.sugerencia-item:hover {
+    background-color: #f0fdf4;
+}
+/* Botones interactivos para Métodos de Pago */
+.metodo-btn {
+    border: 2px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    text-align: center;
+    background: white;
+}
+
+.metodo-btn:hover {
+    border-color: #059669;
+    background: #f0fdf4;
+}
+
+.metodo-btn.selected {
+    border-color: #059669;
+    background: #ecfdf5;
+    font-weight: bold;
+}
