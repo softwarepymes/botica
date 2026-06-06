@@ -1,9 +1,16 @@
 // ====================================================================
+// SUPABASE INIT
+// ====================================================================
+const SUPABASE_URL = 'https://hpmwspsdybenuumlwwbv.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwbXdzcHNkeWJlbnV1bWx3d2J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTA0MzEsImV4cCI6MjA5NjI4NjQzMX0.BGGr-pURxIIha0bAZ92cyMbZ-BeoCsMdVm4QPJbY_uE';
+const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ====================================================================
 // DATA LAYER - SUPABASE
 // ====================================================================
 
 async function getInventario() {
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
         .from('inventario')
         .select('*')
         .order('id', { ascending: false });
@@ -12,7 +19,7 @@ async function getInventario() {
 }
 
 async function getVentas() {
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
         .from('ventas')
         .select('*')
         .order('id', { ascending: false });
@@ -21,7 +28,7 @@ async function getVentas() {
 }
 
 async function getCierres() {
-    const { data, error } = await supabase
+    const { data, error } = await _supabase
         .from('cierres')
         .select('*')
         .order('id', { ascending: false });
@@ -212,7 +219,7 @@ async function eliminarCierre(id) {
 
     if (!confirmado) return;
 
-    const { error } = await supabase.from('cierres').delete().eq('id', id);
+    const { error } = await _supabase.from('cierres').delete().eq('id', id);
     if (error) { alert("Error al eliminar cierre"); return; }
 
     await renderizarHistorialCierres();
@@ -359,7 +366,7 @@ async function ejecutarAjusteManual(id, operacion) {
         }
     }
 
-    const { error } = await supabase.from('inventario').update({ stock: nuevoStock }).eq('id', id);
+    const { error } = await _supabase.from('inventario').update({ stock: nuevoStock }).eq('id', id);
     if (error) { alert("Error al actualizar stock"); return; }
 
     const badgeFiltro = document.getElementById("badge-filtro-stock");
@@ -383,7 +390,7 @@ async function ajustarStockRapido(id, cantidad) {
         return;
     }
 
-    const { error } = await supabase.from('inventario').update({ stock: nuevoStock }).eq('id', id);
+    const { error } = await _supabase.from('inventario').update({ stock: nuevoStock }).eq('id', id);
     if (error) { alert("Error al actualizar stock"); return; }
 
     const badgeFiltro = document.getElementById("badge-filtro-stock");
@@ -441,7 +448,7 @@ async function guardarEdicionProducto() {
         return;
     }
 
-    const { error } = await supabase.from('inventario').update({
+    const { error } = await _supabase.from('inventario').update({
         nombre, codigo_barras: codigo, principio_activo: principio, laboratorio,
         stock, minimo, precio_compra: precioCompra, precio, fecha_vencimiento: fechaVenc
     }).eq('id', id);
@@ -478,7 +485,7 @@ async function guardarProducto() {
         return;
     }
 
-    const { error } = await supabase.from('inventario').insert({
+    const { error } = await _supabase.from('inventario').insert({
         nombre, codigo_barras: codigo, principio_activo: principio, laboratorio,
         stock, minimo, precio_compra: precioCompra, precio, fecha_vencimiento: fechaVenc
     });
@@ -501,7 +508,7 @@ async function guardarProducto() {
 
 async function eliminarProducto(id) {
     if (confirm("¿Seguro que desea eliminar este medicamento?")) {
-        const { error } = await supabase.from('inventario').delete().eq('id', id);
+        const { error } = await _supabase.from('inventario').delete().eq('id', id);
         if (error) { alert("Error al eliminar"); return; }
         await cargarInventario();
     }
@@ -852,11 +859,11 @@ async function eliminarVentaEspecifica(ventaId) {
     for (const item of (ventaEncontrada.productos_lista || [])) {
         const prod = inventario.find(p => p.codigo_barras === item.codigo_barras);
         if (prod) {
-            await supabase.from('inventario').update({ stock: prod.stock + item.qty }).eq('id', prod.id);
+            await _supabase.from('inventario').update({ stock: prod.stock + item.qty }).eq('id', prod.id);
         }
     }
 
-    const { error } = await supabase.from('ventas').delete().eq('id', ventaId);
+    const { error } = await _supabase.from('ventas').delete().eq('id', ventaId);
     if (error) { alert("Error al eliminar venta"); return; }
 
     alert("🔄 Venta anulada. El stock ha sido restablecido con éxito.");
@@ -911,10 +918,10 @@ async function ejecutarCierreCaja() {
         productos_resumen: Object.values(productosAcumulados)
     };
 
-    const { error: errInsert } = await supabase.from('cierres').insert(nuevoReporteCierre);
+    const { error: errInsert } = await _supabase.from('cierres').insert(nuevoReporteCierre);
     if (errInsert) { alert("Error al guardar cierre"); return; }
 
-    const { error: errDelete } = await supabase.from('ventas').delete().neq('id', 0);
+    const { error: errDelete } = await _supabase.from('ventas').delete().neq('id', 0);
     if (errDelete) { alert("Error al limpiar ventas"); return; }
 
     alert("📦 ¡Caja cerrada exitosamente! Datos archivados.");
@@ -945,7 +952,7 @@ async function procesarVentaConPago() {
         }
 
         const nuevoStock = prod.stock - item.qty;
-        const { error } = await supabase.from('inventario').update({ stock: nuevoStock }).eq('id', prod.id);
+        const { error } = await _supabase.from('inventario').update({ stock: nuevoStock }).eq('id', prod.id);
         if (error) { alert("Error al actualizar stock"); return; }
 
         const subtotal = parseFloat(item.precio) * item.qty;
@@ -970,7 +977,7 @@ async function procesarVentaConPago() {
         ganancia_total: gananciaTotalVenta.toFixed(2)
     };
 
-    const { error: errVenta } = await supabase.from('ventas').insert(nuevaVenta);
+    const { error: errVenta } = await _supabase.from('ventas').insert(nuevaVenta);
     if (errVenta) { alert("Error al registrar venta"); return; }
 
     alert(`✅ Venta registrada con éxito (${metodoPagoSeleccionado}).`);
@@ -1006,7 +1013,7 @@ async function ajustarStockInmediato(id) {
         return;
     }
 
-    const { error } = await supabase.from('inventario').update({ stock: nuevoStockCalculado }).eq('id', id);
+    const { error } = await _supabase.from('inventario').update({ stock: nuevoStockCalculado }).eq('id', id);
     if (error) { alert("Error al actualizar stock"); return; }
 
     const badgeFiltro = document.getElementById("badge-filtro-stock");
