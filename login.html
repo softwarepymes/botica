@@ -10,47 +10,49 @@
         .hidden { display: none !important; }
     </style>
 </head>
-    <body class="bg-white min-h-screen flex items-center justify-center p-4 font-sans antialiased">
+    <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4 font-sans antialiased">
 
-    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-sky-100">
-        <div class="bg-sky-700 p-6 text-center">
-            <span class="text-4xl">💊</span>
-            <h1 class="text-2xl font-black text-white mt-2">Botica Emanuel</h1>
-            <p class="text-sky-200 text-sm">Inicia sesión para continuar</p>
+    <div class="w-full max-w-md">
+        <div class="text-center mb-8">
+            <span class="text-5xl">💊</span>
+            <h1 class="text-2xl font-black text-gray-800 mt-3">Botica Emanuel</h1>
+            <p class="text-gray-400 text-sm">Ingresa tus credenciales</p>
         </div>
 
-        <form id="login-form" class="p-8 space-y-5">
-            <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-xl font-medium"></div>
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <form id="login-form" class="space-y-5">
+                <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-xl font-medium"></div>
 
-            <div>
-                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Correo Electrónico</label>
-                <input type="email" id="login-email" required autocomplete="email"
-                    class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-sky-600 focus:border-sky-600 transition"
-                    placeholder="empleado@botica.com">
-            </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Correo Electrónico</label>
+                    <input type="email" id="login-email" required autocomplete="email"
+                        class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-sky-600 focus:border-sky-600 transition bg-gray-50"
+                        placeholder="empleado@botica.com">
+                </div>
 
-            <div>
-                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Contraseña</label>
-                <input type="password" id="login-password" required autocomplete="current-password"
-                    class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-sky-600 focus:border-sky-600 transition"
-                    placeholder="••••••••">
-            </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Contraseña</label>
+                    <input type="password" id="login-password" required autocomplete="current-password"
+                        class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-sky-600 focus:border-sky-600 transition bg-gray-50"
+                        placeholder="••••••••">
+                </div>
 
-            <button type="submit" id="login-btn"
-                class="w-full bg-sky-600 hover:bg-sky-700 text-white p-3.5 rounded-xl font-bold text-sm shadow-md transition cursor-pointer flex items-center justify-center gap-2">
-                <span id="login-btn-text">Ingresar</span>
-                <span id="login-spinner" class="hidden">
-                    <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                    </svg>
-                </span>
-            </button>
+                <button type="submit" id="login-btn"
+                    class="w-full bg-sky-600 hover:bg-sky-700 text-white p-3.5 rounded-xl font-bold text-sm shadow-md transition cursor-pointer flex items-center justify-center gap-2">
+                    <span id="login-btn-text">Ingresar</span>
+                    <span id="login-spinner" class="hidden">
+                        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                        </svg>
+                    </span>
+                </button>
 
-            <p class="text-xs text-gray-400 text-center pt-2">
-                Acceso exclusivo para personal autorizado
-            </p>
-        </form>
+                <p class="text-xs text-gray-400 text-center pt-2">
+                    Acceso exclusivo para personal autorizado
+                </p>
+            </form>
+        </div>
     </div>
 
     <script>
