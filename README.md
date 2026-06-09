@@ -1,4 +1,4 @@
-# BoticaControl
+# Botica Emanuel
 
 Sistema de control de botica/farmacia con gestión de inventario, ventas, cierres de caja y alertas de vencimiento. Conectado a Supabase.
 
