@@ -456,7 +456,7 @@ async function guardarEdicionProducto() {
     const minimo = parseInt(document.getElementById("edit-minimo").value) || 5;
     const precioCompra = parseFloat(document.getElementById("edit-precio-compra").value) || 0;
     const precio = parseFloat(document.getElementById("edit-precio").value) || 0;
-    const fechaVenc = document.getElementById("edit-fecha-vencimiento").value || "";
+    const fechaVenc = document.getElementById("edit-fecha-vencimiento").value || null;
 
     if (!nombre || !codigo) {
         alert("El nombre y código son obligatorios.");
