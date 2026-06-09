@@ -346,7 +346,7 @@ async function cargarInventario(soloStockBajo = false, soloVencidos = false) {
             <td class="p-3 text-green-600 font-medium">S/ ${gananciaUnitaria.toFixed(2)}</td>
 
             <td class="p-3 text-right flex gap-3 justify-end items-center h-full mt-1">
-                <button onclick="ajustarStockInmediato(${p.id})" class="text-emerald-600 hover:text-emerald-800 font-bold cursor-pointer text-xs" title="Carga o descarga rápida de stock">
+                <button onclick="ajustarStockInmediato(${p.id})" class="text-sky-600 hover:text-emerald-800 font-bold cursor-pointer text-xs" title="Carga o descarga rápida de stock">
                     📦 Stock
                 </button>
                 <button onclick="abrirModalEditar(${p.id})" class="text-blue-600 hover:text-blue-800 font-bold cursor-pointer text-xs">
@@ -577,7 +577,7 @@ async function mostrarSugerenciasEnTiempoReal(busqueda) {
             </div>
             <div class="text-right flex items-center gap-2">
                 <span class="text-xs px-2 py-0.5 rounded-full font-medium ${stockColor}">${stockTexto}</span>
-                <span class="font-bold text-emerald-600 text-sm">S/ ${parseFloat(p.precio).toFixed(2)}</span>
+                <span class="font-bold text-sky-600 text-sm">S/ ${parseFloat(p.precio).toFixed(2)}</span>
             </div>
         `;
 

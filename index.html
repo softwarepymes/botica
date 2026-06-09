@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gray-100 text-gray-800 font-sans antialiased">
+<body class="bg-sky-50 text-gray-700 font-sans antialiased">
 
-<nav class="bg-emerald-700 text-white p-4 shadow-md flex justify-between items-center">
+<nav class="bg-sky-700 text-white p-4 shadow-md flex justify-between items-center">
     <div class="flex items-center gap-2">
         <span class="text-2xl">💊</span>
         <h1 class="text-xl font-black tracking-tight">
             BoticaControl
-            <span class="text-xs font-normal bg-emerald-800 px-2 py-0.5 rounded-full text-emerald-200">v3.0</span>
+            <span class="text-xs font-normal bg-sky-800 px-2 py-0.5 rounded-full text-sky-200">v3.0</span>
         </h1>
     </div>
     <div class="flex items-center gap-2">
-        <button onclick="cambiarPestana('ventas')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">💰 Ventas</button>
-        <button onclick="cambiarPestana('inventario')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📦 Inventario</button>
-        <button onclick="cambiarPestana('dashboard')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📊 Dashboard</button>
-        <span class="text-xs text-emerald-200 ml-3 mr-1 hidden sm:inline" id="user-email"></span>
+        <button onclick="cambiarPestana('ventas')" class="bg-sky-800 hover:bg-sky-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">💰 Ventas</button>
+        <button onclick="cambiarPestana('inventario')" class="bg-sky-800 hover:bg-sky-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📦 Inventario</button>
+        <button onclick="cambiarPestana('dashboard')" class="bg-sky-800 hover:bg-sky-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📊 Dashboard</button>
+        <span class="text-xs text-sky-200 ml-3 mr-1 hidden sm:inline" id="user-email"></span>
         <button onclick="cerrarSesion()" class="bg-red-700 hover:bg-red-800 px-3 py-2 rounded-xl font-semibold transition cursor-pointer text-xs shadow-sm" title="Cerrar sesión">🚪 Salir</button>
     </div>
 </nav>
@@ -36,7 +36,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div class="bg-white p-6 rounded-2xl shadow border border-gray-100">
                 <p class="text-sm font-medium text-gray-500 uppercase">Ventas Turno</p>
-                <h3 id="dash-ventas" class="text-3xl font-black text-emerald-600 mt-2">0</h3>
+                <h3 id="dash-ventas" class="text-3xl font-black text-sky-600 mt-2">0</h3>
             </div>
             <div class="bg-white p-6 rounded-2xl shadow border border-gray-100">
                 <p class="text-sm font-medium text-gray-500 uppercase">Ingresos Turno</p>
@@ -90,7 +90,7 @@
                     <button onclick="cargarInventario()" class="hover:text-red-900 ml-1 font-black cursor-pointer">✕ (Ver todo)</button>
                 </span>
             </div>
-            <button onclick="abrirModal()" class="bg-emerald-700 hover:bg-emerald-800 text-white px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md transition cursor-pointer">➕ Agregar Medicamento</button>
+            <button onclick="abrirModal()" class="bg-sky-700 hover:bg-sky-800 text-white px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-md transition cursor-pointer">➕ Agregar Medicamento</button>
         </div>
         <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <div class="overflow-x-auto rounded-xl border border-gray-100 shadow-inner">
@@ -149,11 +149,11 @@
                     <li class="py-4 text-center text-gray-400 text-sm italic">El carrito está vacío.</li>
                 </ul>
                 <div class="text-right text-2xl font-black text-gray-900 border-t pt-3 border-gray-200">
-                    Total: <span class="text-emerald-600">S/ <span id="total-venta">0.00</span></span>
+                    Total: <span class="text-sky-600">S/ <span id="total-venta">0.00</span></span>
                 </div>
             </div>
 
-            <button onclick="abrirModalPago()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-4 rounded-xl font-bold text-lg cursor-pointer shadow-md transition">
+            <button onclick="abrirModalPago()" class="w-full bg-sky-600 hover:bg-sky-700 text-white p-4 rounded-xl font-bold text-lg cursor-pointer shadow-md transition">
                 Confirmar y Registrar Venta
             </button>
         </div>
@@ -184,7 +184,7 @@
                 <button onclick="cerrarModalPago()" class="text-gray-400 hover:text-gray-600 font-bold text-xl">✕</button>
             </div>
             
-            <p class="text-sm text-gray-500 mb-4">Total a cobrar: <span class="text-xl font-black text-emerald-600 ml-1">S/ <span id="modal-pago-total">0.00</span></span></p>
+            <p class="text-sm text-gray-500 mb-4">Total a cobrar: <span class="text-xl font-black text-sky-600 ml-1">S/ <span id="modal-pago-total">0.00</span></span></p>
             
             <div class="grid grid-cols-3 gap-2.5 mb-5">
                 <div id="btn-pago-efectivo" onclick="seleccionarMetodoPago('Efectivo')" class="metodo-btn">
@@ -203,7 +203,7 @@
                     <label class="text-xs font-bold text-gray-500 uppercase">¿Con cuánto paga?</label>
                     <div class="relative w-32">
                         <span class="absolute left-3 top-2 text-gray-400 text-sm">S/</span>
-                        <input type="number" id="pago-cliente" step="0.10" class="w-full border border-gray-300 pl-8 pr-2 py-1.5 rounded-lg text-sm font-bold text-right text-gray-800 focus:outline-emerald-600" placeholder="0.00" oninput="calcularVueltoEnTiempoReal()">
+                        <input type="number" id="pago-cliente" step="0.10" class="w-full border border-gray-300 pl-8 pr-2 py-1.5 rounded-lg text-sm font-bold text-right text-gray-800 focus:outline-sky-600" placeholder="0.00" oninput="calcularVueltoEnTiempoReal()">
                     </div>
                 </div>
                 <div class="flex justify-between items-center pt-2 border-t border-gray-200">
@@ -214,7 +214,7 @@
 
             <div class="flex gap-2">
                 <button onclick="cerrarModalPago()" class="w-full bg-gray-100 text-gray-600 p-3 rounded-xl font-bold text-sm cursor-pointer">Cancelar</button>
-                <button onclick="procesarVentaConPago()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-xl font-bold text-sm cursor-pointer">Procesar Venta</button>
+                <button onclick="procesarVentaConPago()" class="w-full bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-xl font-bold text-sm cursor-pointer">Procesar Venta</button>
             </div>
         </div>
     </div>
@@ -269,7 +269,7 @@
             </div>
             <div class="mt-5 flex gap-2">
                 <button onclick="cerrarModal()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 p-3 rounded-xl font-bold text-sm cursor-pointer">Cancelar</button>
-                <button onclick="guardarProducto()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-xl font-bold text-sm cursor-pointer">Guardar</button>
+                <button onclick="guardarProducto()" class="w-full bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-xl font-bold text-sm cursor-pointer">Guardar</button>
             </div>
         </div>
     </div>

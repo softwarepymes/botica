@@ -36,7 +36,7 @@
 }
 
 .sugerencia-item:hover {
-    background-color: #f0fdf4;
+    background-color: #f0f9ff;
 }
 /* Botones interactivos para Métodos de Pago */
 .metodo-btn {
@@ -50,12 +50,12 @@
 }
 
 .metodo-btn:hover {
-    border-color: #059669;
-    background: #f0fdf4;
+    border-color: #0284c7;
+    background: #f0f9ff;
 }
 
 .metodo-btn.selected {
-    border-color: #059669;
-    background: #ecfdf5;
+    border-color: #0284c7;
+    background: #e0f2fe;
     font-weight: bold;
 }
