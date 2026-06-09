@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoticaControl - Iniciar Sesión</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2.47.0/dist/umd/supabase.js"></script>
+    <style>
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 min-h-screen flex items-center justify-center p-4 font-sans antialiased">
+
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-emerald-100">
+        <div class="bg-emerald-700 p-6 text-center">
+            <span class="text-4xl">💊</span>
+            <h1 class="text-2xl font-black text-white mt-2">BoticaControl</h1>
+            <p class="text-emerald-200 text-sm">Inicia sesión para continuar</p>
+        </div>
+
+        <form id="login-form" class="p-8 space-y-5">
+            <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm p-3 rounded-xl font-medium"></div>
+
+            <div>
+                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Correo Electrónico</label>
+                <input type="email" id="login-email" required autocomplete="email"
+                    class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-emerald-600 focus:border-emerald-600 transition"
+                    placeholder="empleado@botica.com">
+            </div>
+
+            <div>
+                <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Contraseña</label>
+                <input type="password" id="login-password" required autocomplete="current-password"
+                    class="w-full border border-gray-200 p-3 rounded-xl mt-1.5 text-sm focus:outline-emerald-600 focus:border-emerald-600 transition"
+                    placeholder="••••••••">
+            </div>
+
+            <button type="submit" id="login-btn"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-3.5 rounded-xl font-bold text-sm shadow-md transition cursor-pointer flex items-center justify-center gap-2">
+                <span id="login-btn-text">Ingresar</span>
+                <span id="login-spinner" class="hidden">
+                    <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>
+                </span>
+            </button>
+
+            <p class="text-xs text-gray-400 text-center pt-2">
+                Acceso exclusivo para personal autorizado
+            </p>
+        </form>
+    </div>
+
+    <script>
+        const _supabase = supabase.createClient(
+            'https://hpmwspsdybenuumlwwbv.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwbXdzcHNkeWJlbnV1bWx3d2J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTA0MzEsImV4cCI6MjA5NjI4NjQzMX0.BGGr-pURxIIha0bAZ92cyMbZ-BeoCsMdVm4QPJbY_uE'
+        );
+
+        (async () => {
+            const { data: { session } } = await _supabase.auth.getSession();
+            if (session) {
+                window.location.href = 'index.html';
+                return;
+            }
+        })();
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            const errorEl = document.getElementById('login-error');
+            const btn = document.getElementById('login-btn');
+            const btnText = document.getElementById('login-btn-text');
+            const spinner = document.getElementById('login-spinner');
+
+            errorEl.classList.add('hidden');
+            btn.disabled = true;
+            btnText.textContent = 'Ingresando...';
+            spinner.classList.remove('hidden');
+
+            const { error } = await _supabase.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                errorEl.textContent = error.message === 'Invalid login credentials'
+                    ? 'Correo o contraseña incorrectos.'
+                    : error.message;
+                errorEl.classList.remove('hidden');
+                btn.disabled = false;
+                btnText.textContent = 'Ingresar';
+                spinner.classList.add('hidden');
+                return;
+            }
+
+            window.location.href = 'index.html';
+        });
+    </script>
+
+</body>
+</html>

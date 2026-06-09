@@ -40,10 +40,31 @@ let carrito = [];
 let metodoPagoSeleccionado = "";
 
 // ====================================================================
+// AUTENTICACIÓN
+// ====================================================================
+
+async function verificarSesion() {
+    const { data: { session } } = await _supabase.auth.getSession();
+    if (!session) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    document.getElementById('user-email').textContent = session.user.email;
+    return true;
+}
+
+async function cerrarSesion() {
+    await _supabase.auth.signOut();
+    window.location.href = 'login.html';
+}
+
+// ====================================================================
 // INICIALIZADOR Y EVENTOS
 // ====================================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+    const ok = await verificarSesion();
+    if (!ok) return;
     cambiarPestana("ventas");
 
     const buscador = document.getElementById("busca-codigo");

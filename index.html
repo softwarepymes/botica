@@ -16,13 +16,15 @@
         <span class="text-2xl">💊</span>
         <h1 class="text-xl font-black tracking-tight">
             BoticaControl
-            <span class="text-xs font-normal bg-emerald-800 px-2 py-0.5 rounded-full text-emerald-200">v2.3</span>
+            <span class="text-xs font-normal bg-emerald-800 px-2 py-0.5 rounded-full text-emerald-200">v3.0</span>
         </h1>
     </div>
-    <div class="flex gap-2">
-        <button onclick="cambiarPestana('ventas')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">💰 Módulo Ventas</button>
+    <div class="flex items-center gap-2">
+        <button onclick="cambiarPestana('ventas')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">💰 Ventas</button>
         <button onclick="cambiarPestana('inventario')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📦 Inventario</button>
         <button onclick="cambiarPestana('dashboard')" class="bg-emerald-800 hover:bg-emerald-900 px-4 py-2 rounded-xl font-semibold transition cursor-pointer text-sm shadow-sm">📊 Dashboard</button>
+        <span class="text-xs text-emerald-200 ml-3 mr-1 hidden sm:inline" id="user-email"></span>
+        <button onclick="cerrarSesion()" class="bg-red-700 hover:bg-red-800 px-3 py-2 rounded-xl font-semibold transition cursor-pointer text-xs shadow-sm" title="Cerrar sesión">🚪 Salir</button>
     </div>
 </nav>
 
