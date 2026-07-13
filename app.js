@@ -71,6 +71,8 @@ async function cerrarSesion() {
 document.addEventListener("DOMContentLoaded", async () => {
     const ok = await verificarSesion();
     if (!ok) return;
+    document.getElementById('app-nav').classList.remove('hidden');
+    document.getElementById('app-main').classList.remove('hidden');
     await cambiarPestana("ventas");
 
     const buscador = document.getElementById("busca-codigo");
