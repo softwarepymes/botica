@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botica Emanuel - Iniciar Sesión</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2.47.0/dist/umd/supabase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         .hidden { display: none !important; }
     </style>
@@ -60,7 +60,7 @@
     </div>
 
     <script>
-        const _supabase = supabase.createClient(
+        const _supabase = (window.supabase || window.supabaseJs).createClient(
             'https://hpmwspsdybenuumlwwbv.supabase.co',
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwbXdzcHNkeWJlbnV1bWx3d2J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTA0MzEsImV4cCI6MjA5NjI4NjQzMX0.BGGr-pURxIIha0bAZ92cyMbZ-BeoCsMdVm4QPJbY_uE'
         );

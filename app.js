@@ -3,7 +3,7 @@
 // ====================================================================
 const SUPABASE_URL = 'https://hpmwspsdybenuumlwwbv.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhwbXdzcHNkeWJlbnV1bWx3d2J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTA0MzEsImV4cCI6MjA5NjI4NjQzMX0.BGGr-pURxIIha0bAZ92cyMbZ-BeoCsMdVm4QPJbY_uE';
-const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const _supabase = (window.supabase || window.supabaseJs).createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ====================================================================
 // DATA LAYER - SUPABASE
@@ -44,13 +44,19 @@ let metodoPagoSeleccionado = "";
 // ====================================================================
 
 async function verificarSesion() {
-    const { data: { session } } = await _supabase.auth.getSession();
-    if (!session) {
+    try {
+        const { data: { session } } = await _supabase.auth.getSession();
+        if (!session) {
+            window.location.href = 'login.html';
+            return false;
+        }
+        document.getElementById('user-email').textContent = session.user.email;
+        return true;
+    } catch (e) {
+        console.error("Auth error:", e);
         window.location.href = 'login.html';
         return false;
     }
-    document.getElementById('user-email').textContent = session.user.email;
-    return true;
 }
 
 async function cerrarSesion() {
@@ -65,7 +71,7 @@ async function cerrarSesion() {
 document.addEventListener("DOMContentLoaded", async () => {
     const ok = await verificarSesion();
     if (!ok) return;
-    cambiarPestana("ventas");
+    await cambiarPestana("ventas");
 
     const buscador = document.getElementById("busca-codigo");
     if (buscador) {
